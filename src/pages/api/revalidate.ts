@@ -11,7 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Get slug from query parameter
     const slug = req.query.slug as string;
-
+    console.log(`req:${req}`);
+    console.log(`res:${res}`);
+    console.log(`Slug:${slug}`);
     if (!slug) {
       return res.status(400).json({ message: 'Slug is required' });
     }
