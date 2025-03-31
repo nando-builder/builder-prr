@@ -11,14 +11,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const slug = req.body.slug || req.query.slug;
+    const { slug } = req.body;
 
     if (!slug) {
       return res.status(400).json({ message: 'Slug is required' });
     }
 
     // Revalidate the specified path
-    await res.revalidate(`/${slug}`);
+    await res.revalidate(slug);
     return res.json({ revalidated: true });
   } catch (err) {
     return res.status(500).json({ message: 'Error revalidating' });
